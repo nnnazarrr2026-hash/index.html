@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Цветочный магазин «Бутон»</title>
+    <!-- Font Awesome для иконок -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <style>
+        /* === Сброс и базовые стили === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background: #fcf6f0;
+            color: #333;
+            line-height: 1.6;
+        }
+        img {
+            max-width: 100%;
+            display: block;
+            border-radius: 12px;
+        }
+
+        /* === Шапка === */
+        header {
+            background: linear-gradient(135deg, #d4a373, #b5835a);
+            color: white;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .logo {
+            font-size: 2rem;
+            font-weight: 300;
+            letter-spacing: 3px;
+        }
+        .logo i {
+            margin-right: 10px;
+        }
+        nav {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: 0.3s;
+        }
+        nav a:hover {
+            opacity: 0.8;
+        }
+        .cart-btn {
+            background: white;
+            color: #b5835a;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.3s;
+        }
+        .cart-btn:hover {
+            background: #f0e4d8;
+        }
+        .cart-count {
+            background: #e76f51;
+            color: white;
+            border-radius: 50%;
+            padding: 2px 10px;
+            font-size: 0.9rem;
+        }
+
+        /* === Герой === */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://picsum.photos/seed/flowers/1400/500') center/cover no-repeat;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+        }
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 300;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+        .hero .btn {
+            background: #e76f51;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .hero .btn:hover {
+            background: #c45a3e;
+        }
+
+        /* === Каталог === */
+        .catalog {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+        .catalog h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 40px;
+            color: #5a3e2b;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        .card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 30px rgba(0,0,0,0.15);
+        }
+        .card img {
+            height: 220px;
+            width: 100%;
+            object-fit: cover;
+        }
+        .card-body {
+            padding: 20px;
+        }
+        .card-body h3 {
+            font-size: 1.4rem;
+            color: #5a3e2b;
+            margin-bottom: 8px;
+        }
+        .card-body .desc {
+            color: #777;
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+        }
+        .card-body .price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #b5835a;
+        }
+        .card-body .add-btn {
+            background: #b5835a;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            margin-top: 15px;
+            width: 100%;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+        .card-body .add-btn:hover {
+            background: #9a6b47;
+        }
+
+        /* === Контакты === */
+        .contacts {
+            background: #5a3e2b;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+        .contacts h2 {
+            font-size: 2rem;
+            font-weight: 300;
+            margin-bottom: 20px;
+        }
+        .contacts p {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+        .contacts i {
+            margin-right: 10px;
+        }
+
+        /* === Футер === */
+        footer {
+            background: #3a2a1c;
+            color: #aaa;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* === Модальное окно корзины === */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal.active {
+            display: flex;
+        }
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            padding: 30px;
+            position: relative;
+        }
+        .modal-content h2 {
+            font-size: 2rem;
+            font-weight: 300;
+            margin-bottom: 20px;
+            color: #5a3e2b;
+        }
+        .modal-close {
+            position: absolute;
+            right: 25px;
+            top: 20px;
+            font-size: 1.8rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: #aaa;
+        }
+        .modal-close:hover {
+            color: #333;
+        }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .cart-item-info {
+            flex: 1;
+        }
+        .cart-item-name {
+            font-weight: 600;
+        }
+        .cart-item-price {
+            color: #b5835a;
+        }
+        .cart-item-actions button {
+            background: #e76f51;
+            color: white;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1rem;
+            margin: 0 5px;
+        }
+        .cart-item-actions button.remove {
+            background: #ccc;
+            color: #333;
+        }
+        .cart-total {
+            text-align: right;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-top: 20px;
+            color: #5a3e2b;
+        }
+        .cart-empty {
+            text-align: center;
+            color: #aaa;
+            padding: 40px 0;
+            font-size: 1.2rem;
+        }
+        .checkout-btn {
+            background: #e76f51;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            transition: 0.3s;
+        }
+        .checkout-btn:hover {
+            background: #c45a3e;
+        }
+
+        /* === Адаптивность === */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            .modal-content {
+                padding: 20px;
+                width: 95%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Шапка -->
+<header>
+    <div class="logo">
+        <i class="fas fa-seedling"></i> Бутон
+    </div>
+    <nav>
+        <a href="#catalog">Каталог</a>
+        <a href="#contacts">Контакты</a>
+        <button class="cart-btn" id="cartBtn">
+            <i class="fas fa-shopping-bag"></i>
+            <span>Корзина</span>
+            <span class="cart-count" id="cartCount">0</span>
+        </button>
+    </nav>
+</header>
+
+<!-- Герой -->
+<section class="hero">
+    <h1>Свежие цветы с доставкой</h1>
+    <p>Подарите радость близким — каждый букет создаётся с любовью и вниманием к деталям.</p>
+    <button class="btn" onclick="document.getElementById('catalog').scrollIntoView({behavior:'smooth'})">Посмотреть букеты</button>
+</section>
+
+<!-- Каталог -->
+<section class="catalog" id="catalog">
+    <h2><i class="fas fa-flower"></i> Наши букеты</h2>
+    <div class="grid" id="catalogGrid"></div>
+</section>
+
+<!-- Контакты -->
+<section class="contacts" id="contacts">
+    <h2>Свяжитесь с нами</h2>
+    <p><i class="fas fa-phone-alt"></i> +7 (999) 123-45-67</p>
+    <p><i class="fas fa-map-marker-alt"></i> ул. Цветочная, 15, Москва</p>
+    <p><i class="fas fa-clock"></i> Пн–Сб: 9:00–21:00, Вс: 10:00–18:00</p>
+</section>
+
+<!-- Футер -->
+<footer>
+    © 2026 Цветочный магазин «Бутон». Все права защищены.
+</footer>
+
+<!-- Модальное окно корзины -->
+<div class="modal" id="cartModal">
+    <div class="modal-content">
+        <button class="modal-close" id="cartModalClose">&times;</button>
+        <h2><i class="fas fa-shopping-bag"></i> Корзина</h2>
+        <div id="cartItemsContainer"></div>
+        <div class="cart-total" id="cartTotal">0 ₽</div>
+        <button class="checkout-btn" id="checkoutBtn">Оформить заказ</button>
+    </div>
+</div>
+
+<script>
+    // === Данные товаров ===
+    const products = [
+        {
+            id: 1,
+            name: "Нежность",
+            desc: "Розы, пионовидные тюльпаны, гипсофила",
+            price: 2500,
+            image: "https://picsum.photos/seed/bouquet1/400/300"
+        },
+        {
+            id: 2,
+            name: "Солнечное утро",
+            desc: "Подсолнухи, альстромерии, зелень",
+            price: 1900,
+            image: "https://picsum.photos/seed/bouquet2/400/300"
+        },
+        {
+            id: 3,
+            name: "Лавандовый сон",
+            desc: "Лаванда, ирисы, фиолетовые розы",
+            price: 2800,
+            image: "https://picsum.photos/seed/bouquet3/400/300"
+        },
+        {
+            id: 4,
+            name: "Классика",
+            desc: "Красные розы, 25 штук, в крафт-бумаге",
+            price: 3500,
+            image: "https://picsum.photos/seed/bouquet4/400/300"
+        },
+        {
+            id: 5,
+            name: "Весенний бриз",
+            desc: "Тюльпаны, нарциссы, веточки вербы",
+            price: 1700,
+            image: "https://picsum.photos/seed/bouquet5/400/300"
+        },
+        {
+            id: 6,
+            name: "Премиум",
+            desc: "Пионы, гортензии, орхидеи в шляпной коробке",
+            price: 5500,
+            image: "https://picsum.photos/seed/bouquet6/400/300"
+        }
+    ];
+
+    // === Корзина (объект: id товара -> количество) ===
+    let cart = {};
+
+    // === Рендеринг каталога ===
+    const grid = document.getElementById('catalogGrid');
+
+    function renderCatalog() {
+        grid.innerHTML = products.map(p => `
+            <div class="card">
+                <img src="${p.image}" alt="${p.name}" loading="lazy">
+                <div class="card-body">
+                    <h3>${p.name}</h3>
+                    <div class="desc">${p.desc}</div>
+                    <div class="price">${p.price.toLocaleString()} ₽</div>
+                    <button class="add-btn" onclick="addToCart(${p.id})">
+                        <i class="fas fa-plus"></i> В корзину
+                    </button>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    // === Работа с корзиной ===
+    function addToCart(id) {
+        if (!cart[id]) cart[id] = 0;
+        cart[id]++;
+        updateCartUI();
+        // маленькая анимация (вибрация на кнопке корзины)
+        const cartBtn = document.querySelector('.cart-btn');
+        cartBtn.style.transform = 'scale(1.1)';
+        setTimeout(() => cartBtn.style.transform = 'scale(1)', 150);
+    }
+
+    function removeOne(id) {
+        if (cart[id] > 1) {
+            cart[id]--;
+        } else {
+            delete cart[id];
+        }
+        updateCartUI();
+    }
+
+    function removeAll(id) {
+        delete cart[id];
+        updateCartUI();
+    }
+
+    function getTotalQuantity() {
+        return Object.values(cart).reduce((sum, qty) => sum + qty, 0);
+    }
+
+    function getTotalPrice() {
+        let total = 0;
+        for (const id in cart) {
+            const product = products.find(p => p.id === Number(id));
+            if (product) {
+                total += product.price * cart[id];
+            }
+        }
+        return total;
+    }
+
+    // === Обновление UI корзины ===
+    const cartCount = document.getElementById('cartCount');
+    const cartModal = document.getElementById('cartModal');
+    const cartItemsContainer = document.getElementById('cartItemsContainer');
+    const cartTotal = document.getElementById('cartTotal');
+
+    function updateCartUI() {
+        // обновляем счётчик
+        cartCount.textContent = getTotalQuantity();
+
+        // если корзина открыта, обновляем её содержимое
+        if (cartModal.classList.contains('active')) {
+            renderCartItems();
+        }
+    }
+
+    function renderCartItems() {
+        const entries = Object.entries(cart);
+        if (entries.length === 0) {
+            cartItemsContainer.innerHTML = `<div class="cart-empty">Корзина пуста</div>`;
+            cartTotal.textContent = '0 ₽';
+            return;
+        }
+
+        let html = '';
+        entries.forEach(([id, qty]) => {
+            const product = products.find(p => p.id === Number(id));
+            if (!product) return;
+            html += `
+                <div class="cart-item">
+                    <div class="cart-item-info">
+                        <div class="cart-item-name">${product.name}</div>
+                        <div class="cart-item-price">${product.price.toLocaleString()} ₽ × ${qty}</div>
+                    </div>
+                    <div class="cart-item-actions">
+                        <button class="remove" onclick="removeAll(${id})"><i class="fas fa-trash-alt"></i></button>
+                        <button onclick="removeOne(${id})">−</button>
+                        <span style="margin:0 8px; font-weight:600;">${qty}</span>
+                        <button onclick="addToCart(${id})">+</button>
+                    </div>
+                </div>
+            `;
+        });
+        cartItemsContainer.innerHTML = html;
+        cartTotal.textContent = getTotalPrice().toLocaleString() + ' ₽';
+    }
+
+    // === Открытие/закрытие корзины ===
+    document.getElementById('cartBtn').addEventListener('click', () => {
+        cartModal.classList.add('active');
+        renderCartItems();
+    });
+
+    document.getElementById('cartModalClose').addEventListener('click', () => {
+        cartModal.classList.remove('active');
+    });
+
+    // закрытие по клику вне окна
+    cartModal.addEventListener('click', (e) => {
+        if (e.target === cartModal) {
+            cartModal.classList.remove('active');
+        }
+    });
+
+    // === Оформление заказа (имитация) ===
+    document.getElementById('checkoutBtn').addEventListener('click', () => {
+        if (getTotalQuantity() === 0) {
+            alert('Корзина пуста. Добавьте букеты!');
+            return;
+        }
+        alert(`Спасибо за заказ! Итого: ${getTotalPrice().toLocaleString()} ₽\nМы свяжемся с вами для подтверждения.`);
+        cart = {};
+        updateCartUI();
+        cartModal.classList.remove('active');
+    });
+
+    // === Инициализация ===
+    renderCatalog();
+
+    // === Плавная прокрутка для якоря каталога (если с hero кнопки) ===
+    document.querySelector('.hero .btn').addEventListener('click', (e) => {
+        e.preventDefault();
+        document.getElementById('catalog').scrollIntoView({ behavior: 'smooth' });
+    });
+</script>
+
+</body>
+</html>
