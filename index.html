@@ -9,36 +9,25 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap" rel="stylesheet" />
     <style>
       :root {
-        --bg: #f5f3f3;
-        --surface: #f8f8f8;
-        --card: #f5f3f3;
-        --text: #1b1b1b;
+        --bg: #f2f2f2;
+        --surface: #f6f6f6;
+        --card: #f4f3f3;
+        --text: #1f1f1f;
         --muted: #7d7d7d;
-        --line: #e6e1df;
-        --pink: #f77cc3;
-        --pink-dark: #e85eb8;
-        --pink-soft: #f8d9ee;
-        --green: #5ec291;
-        --green-soft: #dff8ed;
-        --yellow: #f2b93f;
-        --orange: #ff8d5f;
-        --shadow: 0 10px 18px rgba(0,0,0,0.07);
+        --line: #e9e4e0;
+        --pink: #f278c5;
+        --pink-deep: #e95db9;
+        --pink-soft: #f9d8ea;
+        --green: #62c697;
+        --green-soft: #dbf7e8;
+        --yellow: #f0b84d;
+        --shadow: 0 12px 24px rgba(0,0,0,0.08);
       }
 
       * { box-sizing: border-box; }
-      html, body {
-        margin: 0;
-        min-height: 100%;
-        background: var(--bg);
-        color: var(--text);
-        font-family: "Nunito", sans-serif;
-      }
-      body {
-        display: flex;
-        justify-content: center;
-        background: #f2f2f2;
-      }
-      img { display: block; max-width: 100%; }
+      html, body { margin: 0; min-height: 100%; background: #efefef; font-family: "Nunito", sans-serif; }
+      body { display: flex; justify-content: center; }
+      img { display: block; width: 100%; }
       button { font: inherit; }
 
       .app {
@@ -51,67 +40,66 @@
 
       .statusbar {
         display: flex;
-        justify-content: space-between;
         align-items: center;
-        padding: 20px 18px 10px;
-        background: #f5f5f5;
+        justify-content: space-between;
+        padding: 14px 18px 8px;
+        background: #f3f3f3;
       }
       .time {
         font-size: 23px;
-        line-height: 1;
         font-weight: 800;
         letter-spacing: -0.04em;
+        line-height: 1;
       }
       .status-icons {
         display: flex;
         align-items: center;
-        gap: 12px;
+        gap: 10px;
       }
       .bars {
-        position: relative;
         display: flex;
         align-items: end;
         gap: 3px;
-        height: 20px;
-        width: 28px;
+        width: 26px;
+        height: 16px;
       }
       .bars span {
         display: block;
         width: 4px;
         border-radius: 999px;
-        background: #181818;
+        background: #171717;
       }
-      .bars span:nth-child(1) { height: 6px; }
-      .bars span:nth-child(2) { height: 10px; }
-      .bars span:nth-child(3) { height: 14px; }
-      .bars span:nth-child(4) { height: 18px; }
+      .bars span:nth-child(1){height:4px}
+      .bars span:nth-child(2){height:7px}
+      .bars span:nth-child(3){height:11px}
+      .bars span:nth-child(4){height:15px}
       .wifi {
+        width: 18px;
+        height: 12px;
         position: relative;
-        width: 22px;
-        height: 14px;
       }
       .wifi::before,
       .wifi::after {
         content: "";
         position: absolute;
         inset: 0;
-        border-radius: 50%;
         border: 2px solid transparent;
-        border-top-color: #1b1b1b;
-        border-left-color: #1b1b1b;
-        transform: rotate(45deg) scale(0.85);
+        border-top-color: #171717;
+        border-left-color: #171717;
+        border-radius: 50%;
+        transform: rotate(45deg) scale(0.9);
       }
       .wifi::after {
-        transform: rotate(45deg) scale(0.45);
-        opacity: 0.7;
+        transform: rotate(45deg) scale(0.5);
+        opacity: 0.8;
       }
       .battery {
-        width: 28px;
+        width: 30px;
         height: 16px;
-        border: 2px solid #1b1b1b;
-        border-radius: 4px;
+        border: 2px solid #1a1a1a;
+        border-radius: 5px;
+        background: linear-gradient(to right, #1a1a1a 0 72%, transparent 72% 100%);
         position: relative;
-        background: linear-gradient(to right, #1b1b1b 0 76%, transparent 76% 100%);
       }
       .battery::after {
         content: "";
@@ -120,139 +108,139 @@
         top: 4px;
         width: 3px;
         height: 6px;
+        background: #1a1a1a;
         border-radius: 2px;
-        background: #1b1b1b;
       }
 
       .header {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 12px;
-        padding: 8px 14px 10px;
+        gap: 10px;
+        padding: 8px 14px 12px;
       }
       .burger {
-        width: 34px;
-        height: 24px;
+        width: 30px;
+        height: 20px;
         position: relative;
+        margin-left: 2px;
       }
       .burger span {
         position: absolute;
         left: 0;
         width: 100%;
         height: 3px;
-        background: #1a1a1a;
         border-radius: 999px;
+        background: #171717;
       }
-      .burger span:nth-child(1) { top: 0; }
-      .burger span:nth-child(2) { top: 9px; }
-      .burger span:nth-child(3) { top: 18px; }
+      .burger span:nth-child(1){top:0}
+      .burger span:nth-child(2){top:8px}
+      .burger span:nth-child(3){top:16px}
 
-      .brand-box {
-        flex: 1;
-        display: flex;
-        justify-content: center;
-      }
+      .brand-wrap { flex: 1; display: flex; justify-content: center; }
       .brand {
         display: inline-block;
         text-align: center;
-        position: relative;
-        line-height: 1;
       }
       .brand-line {
         display: flex;
         align-items: end;
         justify-content: center;
         font-weight: 900;
-        font-size: clamp(24px, 5vw, 41px);
+        line-height: 1;
         letter-spacing: -0.06em;
+        font-size: clamp(26px, 5vw, 41px);
         white-space: nowrap;
       }
-      .brand-line .flow { color: #ff5aae; }
-      .brand-line .dot { color: #ff7ab7; font-size: 0.78em; margin: 0 4px; }
-      .brand-line .love { color: #ff5aa7; }
+      .brand-line .flow { color: #ff5baa; }
+      .brand-line .dot { color: #ff86c4; font-size: 0.78em; margin: 0 3px; }
+      .brand-line .love { color: #ff5ea9; }
       .brand-sub {
-        margin-top: 4px;
         font-size: 8px;
-        letter-spacing: 0.28em;
-        color: #f17cba;
+        letter-spacing: 0.3em;
         text-transform: uppercase;
         text-align: center;
+        color: #f07ab7;
+        margin-top: 2px;
       }
 
-      .top-actions {
+      .header-actions {
         display: flex;
         align-items: center;
-        gap: 8px;
+        gap: 7px;
       }
       .city-pill {
         display: inline-flex;
         align-items: center;
-        gap: 9px;
-        border: 1px solid rgba(0,0,0,0.14);
-        background: rgba(255,255,255,0.5);
+        gap: 8px;
+        border: 1px solid rgba(0,0,0,0.12);
+        background: rgba(255,255,255,0.46);
         border-radius: 999px;
-        padding: 8px 14px 8px 10px;
-        font-size: 15px;
+        padding: 9px 14px 9px 10px;
+        font-size: 14px;
         font-weight: 700;
+        line-height: 1;
       }
       .pin {
         width: 14px;
         height: 14px;
         border-radius: 50%;
-        background: #f5c8df;
+        background: #f5cfe2;
         position: relative;
         display: inline-block;
       }
       .pin::before {
         content: "";
         position: absolute;
-        left: 50%; top: 50%;
-        width: 6px; height: 6px;
-        background: #ff5fba;
+        left: 50%;
+        top: 50%;
+        width: 6px;
+        height: 6px;
         border-radius: 50%;
-        transform: translate(-50%,-50%);
+        background: #ff62b9;
+        transform: translate(-50%, -50%);
       }
       .pin::after {
         content: "";
         position: absolute;
-        left: 50%; bottom: -4px;
-        width: 9px; height: 9px;
-        background: #ff5fba;
+        left: 50%;
+        bottom: -3px;
+        width: 8px;
+        height: 8px;
+        background: #ff62b9;
         clip-path: polygon(50% 100%, 0 0, 100% 0);
         transform: translateX(-50%);
       }
-      .icon-button {
+      .icon-btn {
         width: 38px;
         height: 38px;
-        border: 1px solid rgba(0,0,0,0.15);
-        background: rgba(255,255,255,0.4);
+        border: 1px solid rgba(0,0,0,0.14);
+        background: rgba(255,255,255,0.45);
         border-radius: 50%;
         display: grid;
         place-items: center;
-        color: #1b1b1b;
-        font-size: 20px;
+        font-size: 22px;
         font-weight: 700;
+        color: #1d1d1d;
       }
-      .icon-button.heart { font-size: 22px; }
+      .icon-btn.heart { font-size: 22px; }
 
       .catalog {
-        padding: 6px 14px 110px;
+        padding: 4px 14px 110px;
       }
-      .cards {
+      .catalog-grid {
         display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 14px;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
       }
       .card {
-        background: rgba(255,255,255,0.15);
-        border-radius: 16px;
+        background: rgba(255,255,255,0.09);
+        border-radius: 14px;
         overflow: hidden;
-        box-shadow: inset 0 0 0 1px rgba(0,0,0,0.02);
       }
       .card-media {
         position: relative;
-        height: 240px;
+        height: 238px;
         background: #ddd;
       }
       .card-media img {
@@ -262,40 +250,39 @@
       }
       .badge {
         position: absolute;
-        top: 10px;
-        left: 10px;
-        background: rgba(255,255,255,0.72);
-        color: #ee63b8;
+        top: 9px;
+        left: 9px;
+        background: rgba(255,255,255,0.7);
+        color: #e95db9;
         font-size: 9px;
         font-weight: 800;
         letter-spacing: 0.04em;
-        border-radius: 8px;
-        padding: 6px 8px;
         text-transform: uppercase;
+        border-radius: 8px;
+        padding: 6px 7px;
       }
-      .wishlist {
+      .wish {
         position: absolute;
-        top: 10px;
-        right: 10px;
+        top: 9px;
+        right: 9px;
         width: 36px;
         height: 36px;
         border-radius: 12px;
         border: 0;
-        background: rgba(255,255,255,0.75);
-        font-size: 18px;
-        color: #f26bbb;
+        background: rgba(255,255,255,0.8);
         display: grid;
         place-items: center;
-        box-shadow: 0 5px 10px rgba(0,0,0,0.06);
+        color: #f171bb;
+        font-size: 18px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.05);
       }
-
       .card-body {
         padding: 10px 12px 14px;
       }
       .meta-row {
         display: flex;
-        justify-content: space-between;
         align-items: center;
+        justify-content: space-between;
         gap: 8px;
         color: var(--muted);
       }
@@ -305,7 +292,7 @@
         gap: 8px;
         font-size: 14px;
         font-weight: 700;
-        color: #1f9a66;
+        color: #24a067;
       }
       .stock::before {
         content: "✓";
@@ -315,17 +302,16 @@
         width: 18px;
         height: 18px;
         border-radius: 50%;
-        background: #dff8ed;
-        font-size: 12px;
-        line-height: 1;
+        background: var(--green-soft);
+        color: #1b8d5a;
       }
       .stars {
         display: inline-flex;
         align-items: center;
-        gap: 8px;
-        color: #232323;
-        font-size: 14px;
-        font-weight: 700;
+        gap: 6px;
+        color: #202020;
+        font-size: 15px;
+        font-weight: 800;
       }
       .stars::before {
         content: "★";
@@ -333,72 +319,77 @@
         font-size: 16px;
       }
       .title {
-        margin: 12px 0 18px;
+        margin: 14px 0 18px;
+        font-size: 16px;
+        line-height: 1.25;
         font-weight: 800;
-        font-size: 17px;
-        line-height: 1.28;
-        color: #1f1f1f;
+        color: #222;
       }
-      .price-block {
+      .price-row {
         display: flex;
         align-items: end;
-        gap: 8px;
+        gap: 7px;
         flex-wrap: wrap;
         margin-bottom: 12px;
       }
       .price {
-        font-size: 20px;
+        font-size: 27px;
         line-height: 1;
         font-weight: 900;
         letter-spacing: -0.04em;
       }
       .old-price {
-        color: #9b9b9b;
         font-size: 17px;
+        color: #9d9d9d;
         text-decoration: line-through;
         text-decoration-thickness: 2px;
       }
       .discount {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 24px;
         background: var(--pink-soft);
-        color: #eb5bb2;
+        color: var(--pink-deep);
         border-radius: 8px;
         font-size: 12px;
         font-weight: 800;
-        padding: 6px 9px;
+        padding: 4px 8px;
       }
-      .card button.buy {
+      .buy {
         width: 100%;
-        border: none;
-        border-radius: 12px;
-        background: linear-gradient(180deg, #f77cc3 0%, #ea6db7 100%);
+        border: 0;
+        background: linear-gradient(180deg, #f67ac2 0%, #eb6ac0 100%);
         color: #fff;
         font-weight: 900;
-        font-size: 18px;
-        padding: 14px 18px;
-        box-shadow: 0 7px 14px rgba(234, 109, 183, 0.25);
+        font-size: 17px;
+        letter-spacing: -0.02em;
+        border-radius: 12px;
+        padding: 14px 16px;
+        box-shadow: 0 8px 16px rgba(235,106,192,0.25);
       }
 
       .floating {
         position: fixed;
-        right: calc(50% - 180px + 22px);
+        right: calc(50% - 180px + 18px);
         bottom: 78px;
-        width: 72px;
-        height: 72px;
+        width: 68px;
+        height: 68px;
         border-radius: 50%;
-        background: linear-gradient(135deg, #ff9a60 0%, #ff7d4e 100%);
-        box-shadow: 0 12px 24px rgba(255, 124, 76, 0.32);
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        background: linear-gradient(135deg, #ff9a60 0%, #ff7b4f 100%);
+        box-shadow: 0 10px 22px rgba(255,123,79,0.35);
       }
       .floating::before {
         content: "";
+        position: absolute;
+        left: 50%;
+        top: 50%;
         width: 28px;
         height: 28px;
         border-radius: 50%;
         background: #171717;
-        display: block;
-        box-shadow: 0 0 0 7px rgba(255,255,255,0.14);
+        transform: translate(-50%, -50%);
+        box-shadow: 0 0 0 8px rgba(255,255,255,0.12);
       }
 
       .cookie-bar {
@@ -406,9 +397,9 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background: rgba(245, 211, 230, 0.95);
-        border-top: 1px solid rgba(0,0,0,0.04);
-        padding: 12px 14px 16px;
+        background: rgba(245, 208, 229, 0.96);
+        border-top: 1px solid rgba(0,0,0,0.05);
+        padding: 12px 14px 18px;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -416,31 +407,28 @@
       }
       .cookie-copy {
         font-size: 13px;
-        line-height: 1.3;
-        color: #2d2d2d;
+        line-height: 1.25;
+        color: #2a2a2a;
         margin: 0;
       }
       .cookie-copy strong {
         font-weight: 900;
       }
-      .cookie-button {
-        border: none;
-        border-radius: 12px;
-        background: linear-gradient(180deg, #f77cc3, #eb6db8);
+      .cookie-btn {
+        border: 0;
+        background: linear-gradient(180deg, #f87ad0 0%, #ef6bb5 100%);
         color: #fff;
         font-weight: 900;
         font-size: 15px;
-        padding: 12px 18px;
-        min-width: 110px;
+        border-radius: 12px;
+        padding: 13px 18px;
+        min-width: 108px;
       }
 
       @media (max-width: 420px) {
-        .header { padding-left: 10px; padding-right: 10px; }
-        .top-actions { gap: 6px; }
-        .city-pill { padding-right: 10px; padding-left: 8px; font-size: 13px; }
-        .icon-button { width: 34px; height: 34px; }
-        .cards { gap: 12px; }
-        .card-media { height: 210px; }
+        .app { width: 100vw; }
+        .catalog-grid { gap: 12px; }
+        .card-media { height: 214px; }
         .floating { right: 18px; }
       }
     </style>
@@ -463,30 +451,30 @@
           <span></span><span></span><span></span>
         </div>
 
-        <div class="brand-box">
+        <div class="brand-wrap">
           <div class="brand" aria-label="FLOW LOVE">
             <div class="brand-line"><span class="flow">FL</span><span class="dot">◌</span><span class="love">W LOVE</span></div>
             <div class="brand-sub">ДАРИ • ЖИВИ • ИЗОБРЕТАЙ</div>
           </div>
         </div>
 
-        <div class="top-actions">
+        <div class="header-actions">
           <div class="city-pill">
             <span class="pin" aria-hidden="true"></span>
             <span>Ессентуки</span>
           </div>
-          <button class="icon-button" aria-label="Поиск">⌕</button>
-          <button class="icon-button heart" aria-label="Избранное">♡</button>
+          <button class="icon-btn" aria-label="Поиск">⌕</button>
+          <button class="icon-btn heart" aria-label="Избранное">♡</button>
         </div>
       </header>
 
       <main class="catalog">
-        <section class="cards">
+        <div class="catalog-grid">
           <article class="card">
             <div class="card-media">
               <img src="https://images.unsplash.com/photo-1525310072745-f49212b5ac6d?auto=format&fit=crop&w=900&q=80" alt="Букет" />
-              <span class="badge">Новинка</span>
-              <button class="wishlist" aria-label="В избранное">♡</button>
+              <span class="badge">новинка</span>
+              <button class="wish" aria-label="В избранное">♡</button>
             </div>
             <div class="card-body">
               <div class="meta-row">
@@ -494,7 +482,7 @@
                 <span class="stars">4(1)</span>
               </div>
               <div class="title">Букет из 9 французских красных роз</div>
-              <div class="price-block">
+              <div class="price-row">
                 <span class="price">4 190 руб.</span>
               </div>
               <button class="buy">В корзину</button>
@@ -504,8 +492,8 @@
           <article class="card">
             <div class="card-media">
               <img src="https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&w=900&q=80" alt="Букет" />
-              <span class="badge">Акция</span>
-              <button class="wishlist" aria-label="В избранное">♡</button>
+              <span class="badge">акция</span>
+              <button class="wish" aria-label="В избранное">♡</button>
             </div>
             <div class="card-body">
               <div class="meta-row">
@@ -513,7 +501,7 @@
                 <span class="stars">4(6)</span>
               </div>
               <div class="title">Букет из 11 красных роз</div>
-              <div class="price-block">
+              <div class="price-row">
                 <span class="price">3 190 руб.</span>
                 <span class="old-price">5 000 руб.</span>
                 <span class="discount">-36%</span>
@@ -525,8 +513,8 @@
           <article class="card">
             <div class="card-media">
               <img src="https://images.unsplash.com/photo-1525310072745-f49212b5ac6d?auto=format&fit=crop&w=900&q=80" alt="Букет" />
-              <span class="badge">Новинка</span>
-              <button class="wishlist" aria-label="В избранное">♡</button>
+              <span class="badge">новинка</span>
+              <button class="wish" aria-label="В избранно��">♡</button>
             </div>
             <div class="card-body">
               <div class="meta-row">
@@ -534,7 +522,7 @@
                 <span class="stars">4(5)</span>
               </div>
               <div class="title">Букет из 9 белых роз в крафт</div>
-              <div class="price-block">
+              <div class="price-row">
                 <span class="price">2 290 руб.</span>
               </div>
               <button class="buy">В корзину</button>
@@ -544,8 +532,8 @@
           <article class="card">
             <div class="card-media">
               <img src="https://images.unsplash.com/photo-1468327768560-75b778cbb551?auto=format&fit=crop&w=900&q=80" alt="Букет" />
-              <span class="badge">Эксклюзивный</span>
-              <button class="wishlist" aria-label="В избранное">♡</button>
+              <span class="badge">эксклюзивный</span>
+              <button class="wish" aria-label="В избранное">♡</button>
             </div>
             <div class="card-body">
               <div class="meta-row">
@@ -553,20 +541,20 @@
                 <span class="stars">4(1)</span>
               </div>
               <div class="title">Букет из 7 синих роз</div>
-              <div class="price-block">
+              <div class="price-row">
                 <span class="price">2 149 руб.</span>
               </div>
               <button class="buy">В корзину</button>
             </div>
           </article>
-        </section>
+        </div>
       </main>
 
       <div class="floating" aria-hidden="true"></div>
 
       <div class="cookie-bar">
-        <p class="cookie-copy"><strong>Мы используем cookies</strong><br />для работы сайта.<br />Как это работает?</p>
-        <button class="cookie-button">Понятно</button>
+        <p class="cookie-copy"><strong>Мы используем cookies</strong><br>для работы сайта.<br>Как это работает?</p>
+        <button class="cookie-btn">Понятно</button>
       </div>
     </div>
   </body>
